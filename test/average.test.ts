@@ -3,14 +3,39 @@ import biasedRandom from "../src/index.ts";
 
 suite("Average value", function() {
 
-    test("Test name", function() {
-        const iterations = 100_000_000;
-        let sum = 0;
+    const iterations = 20_000_000; // Gets quite close to real value (~0.1% error) and runs in 2 seconds
+    const _test = (params: object) => {
 
-        for (let i = 0; i < iterations; i++) {
-            sum += biasedRandom({ biasLevel: 19 });
+        // @ts-ignore
+        const { upperBias = false, biasLevel = 2, min = 0, max = 1 } = params;
+
+        let testName = `Bias: ${biasLevel}`;
+        if (upperBias || min !== 0 || max !== 1) {
+            testName += ` (`;
+            testName += upperBias ? "Upper biased" : "";
+            testName += (upperBias ? ', ' : '') + `Min: ${min}`;
+            testName += (testName.length > 1 ? " " : "") + `Max: ${max}`;
+            testName += ')';
         }
 
-        console.log(`Average: ${sum / iterations}`);
-    });
+        test(testName, function() {
+            let sum = 0;
+            for (let i = 0; i < iterations; i++) { // @ts-ignore
+                sum += biasedRandom(params);
+            }
+
+            const average = sum / iterations;
+            const expected = min + (upperBias ? 1 - 1 / (biasLevel + 1) : 1 / (biasLevel + 1)) * (max - min);
+            const maxError = 0.01 * (max - min);
+
+            console.log(`Average: ${sum / iterations}`);
+            console.log(`Expected: ${expected}`);
+            console.log(`Max error: ${maxError}`);
+            console.log(`Error: ${Math.abs(average - expected)}`);
+
+            expect(average).to.be.closeTo(expected, maxError);
+        });
+    }
+
+    _test({});
 });
