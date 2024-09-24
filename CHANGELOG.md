@@ -1,5 +1,11 @@
 # bias-random
 
+## 1.0.1
+
+### Patch Changes
+
+- 4f0b4cc: Fixed bugs in README with incorrect function name
+
 ## 1.0.0
 
 ### Major Changes
