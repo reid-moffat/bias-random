@@ -9,13 +9,13 @@ Generates biased random numbers with a customizable bias level, direction, and r
 ## 📦 Installation
 
 ```bash
-npm install bias-random
+npm i bias-random
 
 # or
 yarn add install bias-random
 
 # or
-pnpm install bias-random
+pnpm i bias-random
 ```
 
 ## 🚀 Usage
@@ -28,8 +28,8 @@ import biasedRandom from "bias-random";
 // -Bias level of 2
 // -Range 0 to 1
 // Average resulting value will be 1/3
-const defaultResult = biasRandom();
+const defaultResult = biasedRandom();
 
 // Cutomize the parmeters (all parameters are optional, defaulting to the values above)
-const customResult = biasRandom({ upperBias: true, biasLevel: 4, min: 10, max: 1000 });
+const customResult = biasedRandom({ upperBias: true, biasLevel: 4, min: 10, max: 1000 });
 ```
