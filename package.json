@@ -1,10 +1,29 @@
 {
   "name": "bias-random",
   "version": "0.0.0",
-  "description": "",
-  "author": "",
+  "description": "Generates biased random numbers with a customizable bias level, direction, and range",
+  "author": "Reid Moffat <reid.moffat9@gmail.com>",
   "license": "MIT",
-  "keywords": [],
+  "keywords": [
+    "random",
+    "bias",
+    "biased",
+    "random-bias",
+    "weighted-random",
+    "probability",
+    "skewed-random",
+    "biased-numbers",
+    "random-distribution",
+    "random-skew",
+    "weighted-numbers",
+    "probability-distribution",
+    "random-bias-generator",
+    "custom-distribution",
+    "random-number-generator",
+    "rng",
+    "biased-probability",
+    "skewed-distribution"
+  ],
   "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -13,7 +32,7 @@
     "lint": "tsc",
     "test": "cross-env TS_NODE_PROJECT='./tsconfig.json' mocha --ui tdd",
     "build": "tsup src/index.ts --format cjs,esm --dts --minify",
-    "deployHelp": "echo \"1) Run 'changeset' 2) Merge changes to main 3) Merge changeset PR 4) npm run deploy (verify it looks good)\"",
+    "deployHelp": "echo 1) Run 'changeset' 2) Merge changes to main 3) Merge changeset PR 4) npm run deploy (verify it looks good)",
     "deploy": "git checkout main && git pull && npm run build && npm publish"
   },
   "files": [
@@ -22,9 +41,9 @@
   ],
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/reid-moffat/bias-random"
   },
-  "bugs": "",
+  "bugs": "https://github.com/reid-moffat/bias-random/issues",
   "devDependencies": {
     "@changesets/cli": "^2.27.8",
     "@types/chai": "^4.3.19",
@@ -32,7 +51,9 @@
     "@types/node": "^22.6.1",
     "chai": "^5.1.1",
     "cross-env": "^7.0.3",
+    "generate-arrays": "^2.0.0",
     "mocha": "^10.7.3",
+    "suite-metrics": "^1.3.1",
     "ts-node": "^10.9.2",
     "tsup": "^8.3.0",
     "typescript": "^5.6.2"
