@@ -1,10 +1,29 @@
 {
   "name": "bias-random",
   "version": "0.0.0",
-  "description": "",
-  "author": "",
+  "description": "Generates a random number, biased",
+  "author": "Reid Moffat <reid.moffat9@gmail.com>",
   "license": "MIT",
-  "keywords": [],
+  "keywords": [
+    "random",
+    "bias",
+    "biased",
+    "random-bias",
+    "weighted-random",
+    "probability",
+    "skewed-random",
+    "biased-numbers",
+    "random-distribution",
+    "random-skew",
+    "weighted-numbers",
+    "probability-distribution",
+    "random-bias-generator",
+    "custom-distribution",
+    "random-number-generator",
+    "rng",
+    "biased-probability",
+    "skewed-distribution"
+  ],
   "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -22,9 +41,9 @@
   ],
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/reid-moffat/bias-random"
   },
-  "bugs": "",
+  "bugs": "https://github.com/reid-moffat/bias-random/issues",
   "devDependencies": {
     "@changesets/cli": "^2.27.8",
     "@types/chai": "^4.3.19",
