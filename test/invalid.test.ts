@@ -33,6 +33,21 @@ suite("Invalid inputs", function() {
         }
 
         _test({ min: 1 });
+        _test({ min: 1.45 });
+        _test({ min: 23 });
+        _test({ min: 17.7 });
+
+        _test({ max: 0 });
+        _test({ max: -0.01 });
+        _test({ max: -0.6 });
+        _test({ max: -23 });
+        _test({ max: -34.2 });
+
+        _test({ min: 1, max: 1 });
+        _test({ min: 2, max: 1 });
+        _test({ min: 0, max: 0 });
+        _test({ min: -1, max: -5 });
+        _test({ min: 10, max: 5 });
     });
 
     suite("Invalid upperBias type", function() {
