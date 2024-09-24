@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import biasedRandom from "../src/index.ts";
 
-suite("Suite name", function() {
+suite("Average value", function() {
 
     test("Test name", function() {
         const iterations = 100_000_000;
