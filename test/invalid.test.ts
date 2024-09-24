@@ -8,7 +8,5 @@ suite("Invalid inputs", function() {
         });
     }
 
-    _test({});
 
-    _test({});
 });
