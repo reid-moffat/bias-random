@@ -1,6 +1,6 @@
 {
   "name": "bias-random",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Generates biased random numbers with a customizable bias level, direction, and range",
   "author": "Reid Moffat <reid.moffat9@gmail.com>",
   "license": "MIT",
