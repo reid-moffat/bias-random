@@ -1,5 +1,11 @@
 # bias-random
 
+## 1.0.2
+
+### Patch Changes
+
+- c3d3e31: Clarified documentation for the function, with clearer parameter explanations and a return as well as throws documentation
+
 ## 1.0.1
 
 ### Patch Changes
