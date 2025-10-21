@@ -57,11 +57,6 @@
     "README.md",
     "package.json"
   ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/reid-moffat/bias-random"
-  },
-  "bugs": "https://github.com/reid-moffat/bias-random/issues",
   "devDependencies": {
     "@changesets/cli": "^2.27.8",
     "@types/chai": "^4.3.19",
@@ -77,5 +72,14 @@
     "tsup": "^8.5.0",
     "typescript": "^5.6.2"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/reid-moffat/bias-random"
+  },
+  "funding": {
+    "type": "buymeacoffee",
+    "url": "https://buymeacoffee.com/reidmoffat"
+  },
+  "bugs": "https://github.com/reid-moffat/bias-random/issues",
   "packageManager": "pnpm@10.18.3"
 }
