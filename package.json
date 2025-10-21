@@ -81,5 +81,11 @@
     "url": "https://buymeacoffee.com/reidmoffat"
   },
   "bugs": "https://github.com/reid-moffat/bias-random/issues",
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "microtime"
+    ]
+  },
   "packageManager": "pnpm@10.18.3"
 }
