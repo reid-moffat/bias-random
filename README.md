@@ -33,3 +33,7 @@ const defaultResult = biasedRandom();
 // Cutomize the parmeters (all parameters are optional, defaulting to the values above)
 const customResult = biasedRandom({ upperBias: true, biasLevel: 4, min: 10, max: 1000 });
 ```
+
+---
+
+☕ [Buy me a coffee](https://buymeacoffee.com/reidmoffat) if this package helped you!
