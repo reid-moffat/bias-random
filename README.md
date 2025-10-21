@@ -12,7 +12,7 @@ Generates biased random numbers with a customizable bias level, direction, and r
 npm i bias-random
 
 # or
-yarn add install bias-random
+yarn add bias-random
 
 # or
 pnpm i bias-random
