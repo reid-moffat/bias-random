@@ -1,5 +1,11 @@
 # bias-random
 
+## 1.0.3
+
+### Patch Changes
+
+- 27a324a: Imporved import support with explicit package export types
+
 ## 1.0.2
 
 ### Patch Changes
