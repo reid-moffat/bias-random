@@ -1,11 +1,11 @@
-name: CI
+name: Lint
 on:
   push:
     branches:
       - "**"
 
 jobs:
-  test:
+  lint:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -15,7 +15,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
@@ -34,5 +34,5 @@ jobs:
       - name: Link package
         run: pnpm link --global
 
-      - name: Run tests
-        run: pnpm run test
+      - name: Lint package
+        run: pnpm run lint
