@@ -33,5 +33,8 @@ jobs:
       - name: Build package
         run: pnpm run build
 
+      - name: Link package
+        run: pnpm link --global
+
       - name: Lint package
         run: pnpm run lint
