@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import biasedRandom from "../src/index.ts";
+import biasedRandom from "bias-random";
 
 suite("Average value", function() {
 
