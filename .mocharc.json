@@ -7,6 +7,7 @@
   "node-option": [
     "loader=ts-node/esm"
   ],
+  "ui": "tdd",
   "recursive": true,
   "timeout": 30000
 }
