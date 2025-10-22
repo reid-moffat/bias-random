@@ -29,7 +29,7 @@ type BiasedRandomOptions = {
  * @throws {TypeError} If `min` is not less than `max`, or if either `min` or `max` is not a number.
  * @throws {TypeError} If `upperBias` is not a boolean.
  */
-const biasedRandom = ({upperBias = false, biasLevel = 2, min = 0, max = 1}: BiasedRandomOptions = {}): number => {
+const biasedRandom: ((opts?: BiasedRandomOptions) => number) = ({upperBias = false, biasLevel = 2, min = 0, max = 1}: BiasedRandomOptions = {}): number => {
 
     if (typeof biasLevel !== 'number' || biasLevel < 1) {
         throw new TypeError(`Parameter 'biasLevel' must be a number least 1 (value: ${biasLevel}); use upperBias to swap bias direction`);
@@ -41,7 +41,7 @@ const biasedRandom = ({upperBias = false, biasLevel = 2, min = 0, max = 1}: Bias
         throw new TypeError(`Parameter 'upperBias' must be a boolean, value '${upperBias}' is invalid`);
     }
 
-    let randomValue = Math.pow(Math.random(), biasLevel);
+    let randomValue: number = Math.pow(Math.random(), biasLevel);
 
     if (upperBias) {
         randomValue = 1 - randomValue;
