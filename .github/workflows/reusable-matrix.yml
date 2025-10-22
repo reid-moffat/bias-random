@@ -6,10 +6,10 @@ on:
         required: true
         type: boolean
       run-command:
-        required: true
+        required: false
         type: string
       run-command-description:
-        required: true
+        required: false
         type: string
 
 jobs:

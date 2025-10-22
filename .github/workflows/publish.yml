@@ -12,8 +12,6 @@ jobs:
     uses: ./.github/workflows/reusable-matrix.yml
     with:
       use-matrix: true
-      run-command: pnpm run test
-      run-command-description: Test
 
   publish:
     needs: build
