@@ -6,7 +6,7 @@ on:
 
 jobs:
   test:
-    uses: ./.github/workflows/reusable-matrix.yml
+    uses: ./.github/workflows/node-workflow.yml
     with:
       use-matrix: true
       run-command: pnpm run test

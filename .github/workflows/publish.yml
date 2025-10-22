@@ -8,7 +8,7 @@ concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
   build:
-    uses: ./.github/workflows/reusable-matrix.yml
+    uses: ./.github/workflows/node-workflow.yml
     with:
       use-matrix: false
       run-command-description: Create Changeset PR
