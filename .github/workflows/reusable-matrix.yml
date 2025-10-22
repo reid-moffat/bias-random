@@ -13,7 +13,7 @@ on:
         type: string
 
 jobs:
-  matrix-job:
+  ${{ inputs.run-command-description }}:
     runs-on: ${{ inputs.use-matrix && matrix.os || 'ubuntu-latest' }}
     strategy:
       matrix:
