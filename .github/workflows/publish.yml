@@ -12,16 +12,5 @@ jobs:
     uses: ./.github/workflows/reusable-matrix.yml
     with:
       use-matrix: false
-
-  publish:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v5
-      - uses: pnpm/action-setup@v4
-
-      - name: Create Changeset PR
-        id: changesets
-        uses: changesets/action@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      action: changesets/action@v1
+      run-command-description: Create Changeset PR

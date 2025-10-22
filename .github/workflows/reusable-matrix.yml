@@ -11,6 +11,9 @@ on:
       run-command-description:
         required: false
         type: string
+      action:
+        required: false
+        type: string
 
 jobs:
   matrix-job:
@@ -43,3 +46,8 @@ jobs:
 
       - name: ${{ inputs.run-command-description }}
         run: ${{ inputs.run-command }}
+
+      - name: ${{ inputs.run-command-description }}
+        uses: ${{ action }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
