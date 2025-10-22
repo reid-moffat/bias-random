@@ -14,11 +14,11 @@ on:
 
 jobs:
   matrix-job:
-    runs-on: ${{ matrix.os }}
+    runs-on: ${{ inputs.use-matrix && matrix.os || 'ubuntu-latest' }}
     strategy:
       matrix:
-        node-version: [18.x, 20.x, 22.x, 24.x]
-        os: [ubuntu-latest, windows-latest, macos-latest]
+        node-version: ${{ inputs.use-matrix && fromJson('[\"18.x\", \"20.x\", \"22.x\", \"24.x\"]') || fromJson('[\"24.x\"]') }}
+        os: ${{ inputs.use-matrix && fromJson('[\"ubuntu-latest\", \"windows-latest\", \"macos-latest\"]') || fromJson('[\"ubuntu-latest\"]') }}
 
     steps:
       - name: Checkout
