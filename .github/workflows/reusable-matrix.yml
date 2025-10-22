@@ -1,0 +1,21 @@
+name: Reusable Matrix Workflow
+on:
+  workflow_call:
+    inputs:
+      run-command:
+        required: true
+        type: string
+
+jobs:
+  matrix-job:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x, 22.x, 24.x]
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    steps:
+      - uses: actions/checkout@v5
+      - uses: ./.github/actions/node-setup
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: ${{ inputs.run-command }}
