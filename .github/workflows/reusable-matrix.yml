@@ -46,8 +46,3 @@ jobs:
 
       - name: ${{ inputs.run-command-description }}
         run: ${{ inputs.run-command }}
-
-      - name: ${{ inputs.run-command-description }}
-        uses: ${{ inputs.action }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
