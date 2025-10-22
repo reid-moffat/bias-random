@@ -12,7 +12,7 @@ on:
       run-command:
         required: false
         type: string
-      run-command-description:
+      command-description:
         required: false
         type: string
       is-publish:
@@ -48,7 +48,7 @@ jobs:
       - name: Link package
         run: pnpm link --global
 
-      - name: ${{ inputs.run-command-description }}
+      - name: ${{ inputs.command-description }}
         run: ${{ inputs.run-command }}
 
       - name: Publish with Changeset

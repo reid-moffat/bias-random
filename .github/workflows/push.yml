@@ -10,4 +10,4 @@ jobs:
     with:
       use-matrix: true
       run-command: pnpm run test
-      run-command-description: Test
+      command-description: Test

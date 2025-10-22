@@ -11,5 +11,4 @@ jobs:
     uses: ./.github/workflows/node-workflow.yml
     with:
       use-matrix: false
-      run-command-description: Create Changeset PR
       is-publish: true

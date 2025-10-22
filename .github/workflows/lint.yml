@@ -10,4 +10,4 @@ jobs:
     with:
       use-matrix: true
       run-command: pnpm run lint
-      run-command-description: Lint
+      command-description: Lint
