@@ -13,16 +13,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v5
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-
-      - name: Setup node
-        uses: actions/setup-node@v4
+      - name: Setup Environment
+        uses: ./.github/actions/node-setup
         with:
-          node-version: 20.x
-
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+          use-matrix: true
 
       - name: Create Release Pull Request or Publish
         id: changesets
