@@ -11,9 +11,9 @@ on:
       run-command-description:
         required: false
         type: string
-      action:
+      is-publish:
         required: false
-        type: string
+        type: boolean
 
 jobs:
   matrix-job:
@@ -46,3 +46,9 @@ jobs:
 
       - name: ${{ inputs.run-command-description }}
         run: ${{ inputs.run-command }}
+
+      - name: ${{ inputs.run-command-description }}
+        if: ${{ inputs.is-publish }}
+        uses: changesets/action@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

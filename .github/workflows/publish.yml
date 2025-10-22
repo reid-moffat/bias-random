@@ -13,3 +13,4 @@ jobs:
     with:
       use-matrix: false
       run-command-description: Create Changeset PR
+      is-publish: true
