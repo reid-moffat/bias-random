@@ -18,7 +18,7 @@ jobs:
         with:
           use-matrix: true
 
-      - name: Create Release Pull Request or Publish
+      - name: Create Changeset PR
         id: changesets
         uses: changesets/action@v1
         with:
