@@ -42,3 +42,4 @@ const biasedRandom = ({ upperBias = false, biasLevel = 2, min = 0, max = 1 }: Bi
 }
 
 export default biasedRandom;
+export { BiasedRandomOptions };
