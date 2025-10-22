@@ -48,6 +48,6 @@ jobs:
         run: ${{ inputs.run-command }}
 
       - name: ${{ inputs.run-command-description }}
-        uses: ${{ action }}
+        uses: ${{ inputs.action }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
