@@ -26,6 +26,7 @@ jobs:
       matrix:
         node-version: ${{ inputs.use-matrix && fromJson('["18.x", "20.x", "22.x", "24.x"]') || fromJson('["24.x"]') }}
         os: ${{ inputs.use-matrix && fromJson('["ubuntu-latest", "windows-latest", "macos-latest"]') || fromJson('["ubuntu-latest"]') }}
+      fail-fast: false
 
     steps:
       - name: Checkout
