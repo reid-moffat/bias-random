@@ -51,7 +51,7 @@ jobs:
       - name: ${{ inputs.run-command-description }}
         run: ${{ inputs.run-command }}
 
-      - name: ${{ inputs.run-command-description }}
+      - name: Publish with Changeset
         if: ${{ inputs.is-publish }}
         uses: changesets/action@v1
         env:
