@@ -1,0 +1,36 @@
+name: 'Setup Node.js Environment'
+description: 'Sets up Node.js, pnpm, installs dependencies, builds and links package'
+inputs:
+  use-matrix:
+    description: 'Whether this workflow is used in a matrix context (TODO)'
+    required: false
+    default: 'false'
+
+runs:
+  using: "composite"
+  steps:
+    - name: Checkout
+      uses: actions/checkout@v5
+      shell: bash
+
+    - name: Setup pnpm
+      uses: pnpm/action-setup@v4
+      shell: bash
+
+    - name: Setup node
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20.x
+      shell: bash
+
+    - name: Install dependencies
+      run: pnpm install --frozen-lockfile
+      shell: bash
+
+    - name: Build package
+      run: pnpm run build
+      shell: bash
+
+    - name: Link package
+      run: pnpm link --global
+      shell: bash
