@@ -2,13 +2,13 @@ name: Reusable Matrix Workflow
 on:
   workflow_call:
     inputs:
+      use-matrix:
+        required: true
+        type: boolean
+        default: true
       run-command:
         required: true
         type: string
-      use-matrix:
-        required: false
-        type: boolean
-        default: true
 
 jobs:
   matrix-job:
