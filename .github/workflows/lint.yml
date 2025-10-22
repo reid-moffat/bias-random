@@ -8,7 +8,7 @@ jobs:
   lint:
     uses: ./.github/workflows/reusable-matrix.yml
     with:
-      run-command: pnpm run list
+      run-command: pnpm run lint
 
 #    runs-on: ubuntu-latest
 #    steps:
