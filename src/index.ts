@@ -4,14 +4,14 @@
  * The whole object as well as every field is optional.
  */
 type BiasedRandomOptions = {
-  /** Bias towards the higher number if true, otherwise lower */
-  upperBias?: boolean;
-  /** Bias factor, must be 1 or greater, default is 2 (1 is no bias) */
-  biasLevel?: number;
-  /** Minimum value, default is 0 */
-  min?: number;
-  /** Maximum value, default is 1 */
-  max?: number;
+    /** Bias towards the higher number if true, otherwise lower */
+    upperBias?: boolean;
+    /** Bias factor, must be 1 or greater, default is 2 (1 is no bias) */
+    biasLevel?: number;
+    /** Minimum value, default is 0 */
+    min?: number;
+    /** Maximum value, default is 1 */
+    max?: number;
 }
 
 /**
@@ -29,25 +29,25 @@ type BiasedRandomOptions = {
  * @throws {TypeError} If `min` is not less than `max`, or if either `min` or `max` is not a number.
  * @throws {TypeError} If `upperBias` is not a boolean.
  */
-const biasedRandom = ({ upperBias = false, biasLevel = 2, min = 0, max = 1 }: BiasedRandomOptions = {}): number => {
+const biasedRandom = ({upperBias = false, biasLevel = 2, min = 0, max = 1}: BiasedRandomOptions = {}): number => {
 
-  if (typeof biasLevel !== 'number' || biasLevel < 1) {
-    throw new TypeError(`Parameter 'biasLevel' must be a number least 1 (value: ${biasLevel}); use upperBias to swap bias direction`);
-  }
-  if (typeof min !== 'number' || typeof max !== 'number' || min >= max) {
-    throw new TypeError(`Parameter 'min' muist be less than 'max' (you can flip them for a valid result). Min value: ${min} Max value: ${max}`);
-  }
-  if (typeof upperBias !== 'boolean') {
-    throw new TypeError(`Parameter 'upperBias' must be a boolean, value '${upperBias}' is invalid`);
-  }
+    if (typeof biasLevel !== 'number' || biasLevel < 1) {
+        throw new TypeError(`Parameter 'biasLevel' must be a number least 1 (value: ${biasLevel}); use upperBias to swap bias direction`);
+    }
+    if (typeof min !== 'number' || typeof max !== 'number' || min >= max) {
+        throw new TypeError(`Parameter 'min' muist be less than 'max' (you can flip them for a valid result). Min value: ${min} Max value: ${max}`);
+    }
+    if (typeof upperBias !== 'boolean') {
+        throw new TypeError(`Parameter 'upperBias' must be a boolean, value '${upperBias}' is invalid`);
+    }
 
-  let randomValue = Math.pow(Math.random(), biasLevel);
+    let randomValue = Math.pow(Math.random(), biasLevel);
 
-  if (upperBias) {
-    randomValue = 1 - randomValue;
-  }
+    if (upperBias) {
+        randomValue = 1 - randomValue;
+    }
 
-  return min + randomValue * (max - min);
+    return min + randomValue * (max - min);
 }
 
 export default biasedRandom;
