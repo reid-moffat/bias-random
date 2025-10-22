@@ -8,15 +8,18 @@ concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
   build:
+    uses: ./.github/workflows/reusable-matrix.yml
+    with:
+      use-matrix: true
+      run-command: pnpm run test
+      run-command-description: Test
+
+  publish:
+    needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v5
-
-      - name: Setup Environment
-        uses: ./.github/actions/node-setup
-        with:
-          use-matrix: false
+      - uses: actions/checkout@v5
+      - uses: pnpm/action-setup@v4
 
       - name: Create Changeset PR
         id: changesets
