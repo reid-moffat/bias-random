@@ -84,6 +84,9 @@
     "url": "https://buymeacoffee.com/reidmoffat"
   },
   "bugs": "https://github.com/reid-moffat/bias-random/issues",
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "pnpm": {
     "onlyBuiltDependencies": [
       "esbuild",
