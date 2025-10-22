@@ -20,8 +20,24 @@ jobs:
       fail-fast: false
 
     steps:
-      - uses: actions/checkout@v5
-      - uses: ./.github/actions/node-setup
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup node
+        uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 24.x
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build package
+        run: pnpm run build
+
+      - name: Link package
+        run: pnpm link --global
+
       - run: ${{ inputs.run-command }}
