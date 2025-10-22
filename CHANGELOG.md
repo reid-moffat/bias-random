@@ -1,5 +1,11 @@
 # bias-random
 
+## 1.1.0
+
+### Minor Changes
+
+- d2d99f0: Added package.json and explicit CDN import options. Fixed the yarn install command in README.
+
 ## 1.0.3
 
 ### Patch Changes
