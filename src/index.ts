@@ -51,4 +51,3 @@ const biasedRandom: ((opts?: BiasedRandomOptions) => number) = ({upperBias = fal
 }
 
 export default biasedRandom;
-export { BiasedRandomOptions };
