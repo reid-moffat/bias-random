@@ -35,7 +35,7 @@ const biasedRandom = ({upperBias = false, biasLevel = 2, min = 0, max = 1}: Bias
         throw new TypeError(`Parameter 'biasLevel' must be a number least 1 (value: ${biasLevel}); use upperBias to swap bias direction`);
     }
     if (typeof min !== 'number' || typeof max !== 'number' || min >= max) {
-        throw new TypeError(`Parameter 'min' muist be less than 'max' (you can flip them for a valid result). Min value: ${min} Max value: ${max}`);
+        throw new TypeError(`Parameter 'min' must be less than 'max' (you can flip them for a valid result). Min value: ${min} Max value: ${max}`);
     }
     if (typeof upperBias !== 'boolean') {
         throw new TypeError(`Parameter 'upperBias' must be a boolean, value '${upperBias}' is invalid`);
