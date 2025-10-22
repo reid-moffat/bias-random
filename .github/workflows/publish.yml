@@ -11,7 +11,7 @@ jobs:
   build:
     uses: ./.github/workflows/reusable-matrix.yml
     with:
-      use-matrix: true
+      use-matrix: false
 
   publish:
     needs: build
