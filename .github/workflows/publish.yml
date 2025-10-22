@@ -16,7 +16,7 @@ jobs:
       - name: Setup Environment
         uses: ./.github/actions/node-setup
         with:
-          use-matrix: true
+          use-matrix: false
 
       - name: Create Changeset PR
         id: changesets
