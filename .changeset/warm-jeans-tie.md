@@ -2,4 +2,4 @@
 "bias-random": minor
 ---
 
-Added package.json import option. Fixed the yarn install command in README.
+Added package.json and explicit CDN import options. Fixed the yarn install command in README.
