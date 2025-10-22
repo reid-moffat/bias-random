@@ -1,3 +1,8 @@
+/**
+ * Options object to customize the biased random generated result.
+ *
+ * The whole object as well as every field is optional.
+ */
 type BiasedRandomOptions = {
   upperBias?: boolean; // Bias towards the higher number if true, otherwise lower
   biasLevel?: number;  // Bias factor, must be 1 or greater, default is 2 (1 is no bias)
