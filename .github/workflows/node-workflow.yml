@@ -49,6 +49,7 @@ jobs:
         run: pnpm link --global
 
       - name: ${{ inputs.command-description }}
+        if: ${{ inputs.run-command != '' }}
         run: ${{ inputs.run-command }}
 
       - name: Publish with Changeset
