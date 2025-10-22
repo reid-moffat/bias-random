@@ -27,7 +27,7 @@ suite("Invalid inputs", function() {
     suite("Invalid min/max", function() {
         const _test = (params: object) => {
             test("Params: " + JSON.stringify(params), function() { // @ts-ignore
-                const expectedErr = `Parameter 'min' muist be less than 'max' (you can flip them for a valid result). Min value: ${params.min ?? 0} Max value: ${params.max ?? 1}`;
+                const expectedErr = `Parameter 'min' must be less than 'max' (you can flip them for a valid result). Min value: ${params.min ?? 0} Max value: ${params.max ?? 1}`;
                 expect(() => biasedRandom(params)).to.throw(TypeError, expectedErr);
             });
         }
