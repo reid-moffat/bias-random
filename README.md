@@ -3,6 +3,7 @@
 [![npm](https://img.shields.io/npm/v/bias-random)](https://www.npmjs.com/package/bias-random)
 [![npm](https://img.shields.io/npm/dt/bias-random)](https://www.npmjs.com/package/bias-random)
 [![npm](https://img.shields.io/npm/l/bias-random)](https://www.npmjs.com/package/bias-random)
+[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-support-yellow?logo=buy-me-a-coffee)](https://buymeacoffee.com/reidmoffat)
 
 Generates biased random numbers with a customizable bias level, direction, and range
 
