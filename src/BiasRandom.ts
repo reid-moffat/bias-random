@@ -5,7 +5,7 @@ import BiasedRandomOptions from "./options.ts";
  *
  * @param {Object} [options] - Optional configuration object to adjust the behavior of the random number generation.
  * @param {boolean} [options.upperBias=false] - If true, biases the result towards the higher bound (`max`), otherwise biases towards the lower bound (`min`). Default is `false`.
- * @param {number} [options.biasLevel=2] - Determines the strength of the bias. Must be 1 or greater, where `1` means no bias and higher values increase the bias. Default is `2`.
+ * @param {number} [options.biasLevel=2] - Determines the strength of the bias (power to raise the random result by). Must be 1 or greater, where `1` means no bias and higher values increase the bias. Default is `2`.
  * @param {number} [options.min=0] - The minimum value for the random number range. Default is `0`.
  * @param {number} [options.max=1] - The maximum value for the random number range. Default is `1`.
  *
@@ -18,7 +18,7 @@ import BiasedRandomOptions from "./options.ts";
 const biasedRandom: ((opts?: BiasedRandomOptions) => number) = ({upperBias = false, biasLevel = 2, min = 0, max = 1}: BiasedRandomOptions = {}): number => {
 
     if (typeof biasLevel !== 'number' || biasLevel < 1) {
-        throw new TypeError(`Parameter 'biasLevel' must be a number least 1 (value: ${biasLevel}); use upperBias to swap bias direction`);
+        throw new TypeError(`Parameter 'biasLevel' must be a number at least 1 (value: ${biasLevel}); use upperBias to swap bias direction`);
     }
     if (typeof min !== 'number' || typeof max !== 'number' || min >= max) {
         throw new TypeError(`Parameter 'min' must be less than 'max' (you can flip them for a valid result). Min value: ${min} Max value: ${max}`);
