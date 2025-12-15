@@ -1,15 +1,15 @@
 import { expect } from 'chai';
+import stringifyObject from 'stringify-object';
 import biasedRandom, { BiasedRandomOptions } from "bias-random";
 
 suite("Invalid inputs", function() {
 
     suite("Invalid bias level", function() {
         const _test = (params: BiasedRandomOptions) => {
-            test("Params: " + JSON.stringify(params), function() {
+            test("Params: " + stringifyObject(params), function() {
                 const expectedErr = `Parameter 'biasLevel' must be a number at least 1 (value: ${params.biasLevel}); use upperBias to swap bias direction`;
                 expect(() => biasedRandom(params)).to.throw(TypeError, expectedErr);
             });
-
         }
 
         _test({ biasLevel: 0.9999 });
@@ -28,7 +28,7 @@ suite("Invalid inputs", function() {
 
     suite("Invalid min/max type", function() {
         const _test = (params: BiasedRandomOptions) => {
-            test("Params: " + JSON.stringify(params), function() {
+            test("Params: " + stringifyObject(params), function() {
                 const expectedErr = `Parameters 'min' and 'max' must be finite numbers. Min value: ${params.min ?? 0} Max value: ${params.max ?? 1}`;
                 expect(() => biasedRandom(params)).to.throw(TypeError, expectedErr);
             });
@@ -46,7 +46,7 @@ suite("Invalid inputs", function() {
 
     suite("Invalid min/max relationship", function() {
         const _test = (params: BiasedRandomOptions) => {
-            test("Params: " + JSON.stringify(params), function() {
+            test("Params: " + stringifyObject(params), function() {
                 const expectedErr = `Parameter 'min' must be less than 'max' (you can flip them for a valid result). Min value: ${params.min ?? 0} Max value: ${params.max ?? 1}`;
                 expect(() => biasedRandom(params)).to.throw(TypeError, expectedErr);
             });
@@ -72,7 +72,7 @@ suite("Invalid inputs", function() {
 
     suite("Invalid upperBias type", function() {
         const _test = (params: BiasedRandomOptions) => {
-            test("Params: " + JSON.stringify(params), function() {
+            test("Params: " + stringifyObject(params), function() {
                 const expectedErr = `Parameter 'upperBias' must be a boolean, value '${params.upperBias}' is invalid`;
                 expect(() => biasedRandom(params)).to.throw(TypeError, expectedErr);
             });
