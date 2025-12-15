@@ -6,9 +6,10 @@ suite("Invalid inputs", function() {
     suite("Invalid bias level", function() {
         const _test = (params: object) => {
             test("Params: " + JSON.stringify(params), function() { // @ts-ignore
-                const expectedErr = `Parameter 'biasLevel' must be a number least 1 (value: ${params.biasLevel}); use upperBias to swap bias direction`;
+                const expectedErr = `Parameter 'biasLevel' must be a number at least 1 (value: ${params.biasLevel}); use upperBias to swap bias direction`;
                 expect(() => biasedRandom(params)).to.throw(TypeError, expectedErr);
             });
+
         }
 
         _test({ biasLevel: 0.9999 });
