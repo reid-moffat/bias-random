@@ -1,11 +1,11 @@
 import { expect } from 'chai';
-import biasedRandom from "bias-random";
+import biasedRandom, { BiasedRandomOptions } from "bias-random";
 
 suite("Invalid inputs", function() {
 
     suite("Invalid bias level", function() {
-        const _test = (params: object) => {
-            test("Params: " + JSON.stringify(params), function() { // @ts-ignore
+        const _test = (params: BiasedRandomOptions) => {
+            test("Params: " + JSON.stringify(params), function() {
                 const expectedErr = `Parameter 'biasLevel' must be a number at least 1 (value: ${params.biasLevel}); use upperBias to swap bias direction`;
                 expect(() => biasedRandom(params)).to.throw(TypeError, expectedErr);
             });
@@ -21,13 +21,14 @@ suite("Invalid inputs", function() {
         _test({ biasLevel: -124 });
         _test({ biasLevel: -37.8 });
 
-        _test({ biasLevel: "true" });
+        // @ts-ignore
+        _test({ biasLevel: "true" }); // @ts-ignore
         _test({ biasLevel: "false" });
     });
 
     suite("Invalid min/max type", function() {
-        const _test = (params: object) => {
-            test("Params: " + JSON.stringify(params), function() { // @ts-ignore
+        const _test = (params: BiasedRandomOptions) => {
+            test("Params: " + JSON.stringify(params), function() {
                 const expectedErr = `Parameters 'min' and 'max' must be finite numbers. Min value: ${params.min ?? 0} Max value: ${params.max ?? 1}`;
                 expect(() => biasedRandom(params)).to.throw(TypeError, expectedErr);
             });
@@ -44,8 +45,8 @@ suite("Invalid inputs", function() {
     });
 
     suite("Invalid min/max relationship", function() {
-        const _test = (params: object) => {
-            test("Params: " + JSON.stringify(params), function() { // @ts-ignore
+        const _test = (params: BiasedRandomOptions) => {
+            test("Params: " + JSON.stringify(params), function() {
                 const expectedErr = `Parameter 'min' must be less than 'max' (you can flip them for a valid result). Min value: ${params.min ?? 0} Max value: ${params.max ?? 1}`;
                 expect(() => biasedRandom(params)).to.throw(TypeError, expectedErr);
             });
@@ -70,21 +71,22 @@ suite("Invalid inputs", function() {
     });
 
     suite("Invalid upperBias type", function() {
-        const _test = (params: object) => {
-            test("Params: " + JSON.stringify(params), function() { // @ts-ignore
+        const _test = (params: BiasedRandomOptions) => {
+            test("Params: " + JSON.stringify(params), function() {
                 const expectedErr = `Parameter 'upperBias' must be a boolean, value '${params.upperBias}' is invalid`;
                 expect(() => biasedRandom(params)).to.throw(TypeError, expectedErr);
             });
         }
 
-        _test({ upperBias: "true" });
-        _test({ upperBias: "false" });
-        _test({ upperBias: 0 });
-        _test({ upperBias: 1 });
-        _test({ upperBias: 1.7 });
-        _test({ upperBias: -34 });
-        _test({ upperBias: -325.6 });
-        _test({ upperBias: null });
+        // @ts-ignore
+        _test({ upperBias: "true" }); // @ts-ignore
+        _test({ upperBias: "false" }); // @ts-ignore
+        _test({ upperBias: 0 }); // @ts-ignore
+        _test({ upperBias: 1 }); // @ts-ignore
+        _test({ upperBias: 1.7 }); // @ts-ignore
+        _test({ upperBias: -34 }); // @ts-ignore
+        _test({ upperBias: -325.6 }); // @ts-ignore
+        _test({ upperBias: null }); // @ts-ignore
         _test({ upperBias: NaN });
     });
 });
