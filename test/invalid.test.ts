@@ -25,7 +25,25 @@ suite("Invalid inputs", function() {
         _test({ biasLevel: "false" });
     });
 
-    suite("Invalid min/max", function() {
+    suite("Invalid min/max type", function() {
+        const _test = (params: object) => {
+            test("Params: " + JSON.stringify(params), function() { // @ts-ignore
+                const expectedErr = `Parameters 'min' and 'max' must be finite numbers. Min value: ${params.min ?? 0} Max value: ${params.max ?? 1}`;
+                expect(() => biasedRandom(params)).to.throw(TypeError, expectedErr);
+            });
+        }
+
+        _test({ min: Infinity });
+        _test({ max: Infinity });
+        _test({ min: Infinity, max: Infinity });
+        _test({ min: -Infinity });
+        _test({ max: -Infinity });
+        _test({ min: -Infinity, max: -Infinity  });
+        _test({ min: Infinity, max: -Infinity  });
+        _test({ min: -Infinity, max: Infinity  });
+    });
+
+    suite("Invalid min/max relationship", function() {
         const _test = (params: object) => {
             test("Params: " + JSON.stringify(params), function() { // @ts-ignore
                 const expectedErr = `Parameter 'min' must be less than 'max' (you can flip them for a valid result). Min value: ${params.min ?? 0} Max value: ${params.max ?? 1}`;
