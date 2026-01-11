@@ -17,7 +17,7 @@ import BiasedRandomOptions from "./options.ts";
  */
 const biasedRandom: ((opts?: BiasedRandomOptions) => number) = ({upperBias = false, biasLevel = 2, min = 0, max = 1}: BiasedRandomOptions = {}): number => {
 
-    if (typeof biasLevel !== 'number' || biasLevel < 1) {
+    if (!Number.isFinite(biasLevel) || biasLevel < 1) {
         throw new TypeError(`Parameter 'biasLevel' must be a number at least 1 (value: ${biasLevel}); use upperBias to swap bias direction`);
     }
     if (typeof min !== 'number' || typeof max !== 'number' || !isFinite(min) || !isFinite(max)) {
