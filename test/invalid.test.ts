@@ -23,14 +23,24 @@ suite("Invalid inputs", function() {
 
         // @ts-ignore
         _test({ biasLevel: "true" }); // @ts-ignore
-        _test({ biasLevel: "false" });
+        _test({ biasLevel: "false" }); // @ts-ignore
+        _test({ biasLevel: "" }); // @ts-ignore
+        _test({ biasLevel: "1.5" }); // @ts-ignore
+        _test({ biasLevel: null }); // @ts-ignore
+        _test({ biasLevel: [] }); // @ts-ignore
+        _test({ biasLevel: {} }); // @ts-ignore
+        _test({ biasLevel: [2] }); // @ts-ignore
+        _test({ biasLevel: { value: 2 } });
+        _test({ biasLevel: NaN });
     });
 
     suite("Invalid min/max type", function() {
         const _test = (params: BiasedRandomOptions) => {
             test("Params: " + stringifyObject(params), function() {
-                const expectedErr = `Parameters 'min' and 'max' must be finite numbers. Min value: ${params.min ?? 0} Max value: ${params.max ?? 1}`;
-                expect(() => biasedRandom(params)).to.throw(TypeError, expectedErr);
+                const min: number = params.min === undefined ? 0 : params.min;
+                const max: number = params.max === undefined ? 1 : params.max;
+                const expectedErr = `Parameters 'min' and 'max' must be finite numbers. Min value: ${min} Max value: ${max}`;
+                expect((): number => biasedRandom(params)).to.throw(TypeError, expectedErr);
             });
         }
 
@@ -42,6 +52,25 @@ suite("Invalid inputs", function() {
         _test({ min: -Infinity, max: -Infinity  });
         _test({ min: Infinity, max: -Infinity  });
         _test({ min: -Infinity, max: Infinity  });
+
+        _test({ min: NaN });
+        _test({ max: NaN });
+        _test({ min: NaN, max: NaN });
+        _test({ min: NaN, max: 10 });
+        _test({ min: 0, max: NaN });
+
+        // @ts-ignore
+        _test({ min: "0" }); // @ts-ignore
+        _test({ max: "1" }); // @ts-ignore
+        _test({ min: "0", max: "1" }); // @ts-ignore
+        _test({ min: null }); // @ts-ignore
+        _test({ max: null }); // @ts-ignore
+        _test({ min: [] }); // @ts-ignore
+        _test({ max: [] }); // @ts-ignore
+        _test({ min: {} }); // @ts-ignore
+        _test({ max: {} }); // @ts-ignore
+        _test({ min: [0] }); // @ts-ignore
+        _test({ max: [1] });
     });
 
     suite("Invalid min/max relationship", function() {
@@ -87,6 +116,50 @@ suite("Invalid inputs", function() {
         _test({ upperBias: -34 }); // @ts-ignore
         _test({ upperBias: -325.6 }); // @ts-ignore
         _test({ upperBias: null }); // @ts-ignore
-        _test({ upperBias: NaN });
+        _test({ upperBias: NaN }); // @ts-ignore
+        _test({ upperBias: [] }); // @ts-ignore
+        _test({ upperBias: {} }); // @ts-ignore
+        _test({ upperBias: [true] });
+    });
+
+    suite("Multiple invalid parameters", function() {
+        test("Invalid biasLevel and invalid min", function() {
+            expect(() => biasedRandom({ biasLevel: 0.5, min: 5 })).to.throw(TypeError);
+        });
+
+        test("Invalid biasLevel and invalid max", function() {
+            expect(() => biasedRandom({ biasLevel: -1, max: -5 })).to.throw(TypeError);
+        });
+
+        test("Invalid min/max relationship and invalid biasLevel", function() {
+            expect(() => biasedRandom({ biasLevel: 0, min: 10, max: 5 })).to.throw(TypeError);
+        });
+
+        test("Invalid upperBias and invalid biasLevel", function() {
+            // @ts-ignore
+            expect(() => biasedRandom({ upperBias: "true", biasLevel: -1 })).to.throw(TypeError);
+        });
+
+        test("Invalid min type and invalid max type", function() {
+            // @ts-ignore
+            expect(() => biasedRandom({ min: "0", max: "10" })).to.throw(TypeError);
+        });
+
+        test("All parameters invalid", function() {
+            // @ts-ignore
+            expect(() => biasedRandom({ biasLevel: -1, min: Infinity, max: NaN, upperBias: "yes" })).to.throw(TypeError);
+        });
+
+        test("Valid biasLevel but min equals max", function() {
+            expect(() => biasedRandom({ biasLevel: 2, min: 5, max: 5 })).to.throw(TypeError);
+        });
+
+        test("Min is NaN with valid biasLevel", function() {
+            expect(() => biasedRandom({ biasLevel: 3, min: NaN })).to.throw(TypeError);
+        });
+
+        test("Max is Infinity with inverted min/max", function() {
+            expect(() => biasedRandom({ max: Infinity, min: 10 })).to.throw(TypeError);
+        });
     });
 });
