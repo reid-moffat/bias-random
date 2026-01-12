@@ -1,16 +1,16 @@
 /**
- * Options object to customize the biased random generated result.
+ * Options object to customize the biased random generated result
  *
- * The whole object as well as every field is optional.
+ * Every field, as well as providing this object itself, is optional
  */
 type BiasedRandomOptions = {
-    /** Bias towards the higher number if true, otherwise lower */
+    /** Bias towards the maximum number if true, otherwise biased towards the minimum number (default false) */
     upperBias?: boolean;
-    /** Bias factor, must be 1 or greater, default is 2 (1 is no bias) */
+    /** Bias factor (power to raise the random result by). Must be 1 (no bias) or greater, default is 2 */
     biasLevel?: number;
-    /** Minimum value, default is 0 */
+    /** Minimum value (default 0) */
     min?: number;
-    /** Maximum value, default is 1 */
+    /** Maximum value (default 1) */
     max?: number;
 }
 
