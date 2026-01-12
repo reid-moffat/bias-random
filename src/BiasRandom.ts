@@ -20,7 +20,7 @@ const biasedRandom: ((opts?: BiasedRandomOptions) => number) = ({upperBias = fal
     if (!Number.isFinite(biasLevel) || biasLevel < 1) {
         throw new TypeError(`Parameter 'biasLevel' must be a number at least 1 (value: ${biasLevel}); use upperBias to swap bias direction`);
     }
-    if (typeof min !== 'number' || typeof max !== 'number' || !isFinite(min) || !isFinite(max)) {
+    if (typeof min !== 'number' || typeof max !== 'number' || !Number.isFinite(min) || !Number.isFinite(max)) {
         throw new TypeError(`Parameters 'min' and 'max' must be finite numbers. Min value: ${min} Max value: ${max}`);
     }
     if (min >= max) {
