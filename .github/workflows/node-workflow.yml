@@ -7,7 +7,7 @@ on:
   workflow_call:
     inputs:
       use-matrix:
-        required: true
+        required: false
         type: boolean
       run-command:
         required: false

@@ -10,5 +10,4 @@ jobs:
   build:
     uses: ./.github/workflows/node-workflow.yml
     with:
-      use-matrix: false
       is-publish: true
