@@ -39,6 +39,8 @@ suite("Invalid inputs", function() {
         _test({ biasLevel: [2] }); // @ts-ignore
         _test({ biasLevel: { value: 2 } });
         _test({ biasLevel: NaN });
+        _test({ biasLevel: Infinity });
+        _test({ biasLevel: -Infinity });
     });
 
     suite("Invalid min/max type", function() {
