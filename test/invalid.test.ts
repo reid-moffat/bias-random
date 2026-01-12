@@ -25,7 +25,14 @@ suite("Invalid inputs", function() {
         _test({ biasLevel: "true" }); // @ts-ignore
         _test({ biasLevel: "false" }); // @ts-ignore
         _test({ biasLevel: "" }); // @ts-ignore
-        _test({ biasLevel: "1.5" }); // @ts-ignore
+        _test({ biasLevel: "1" }); // @ts-ignore
+        _test({ biasLevel: "2" }); // @ts-ignore
+        _test({ biasLevel: "7" }); // @ts-ignore
+        _test({ biasLevel: "3.5" }); // @ts-ignore
+        _test({ biasLevel: "-1.5" }); // @ts-ignore
+        _test({ biasLevel: "0" }); // @ts-ignore
+        _test({ biasLevel: "-0" }); // @ts-ignore
+        _test({ biasLevel: "-2" }); // @ts-ignore
         _test({ biasLevel: null }); // @ts-ignore
         _test({ biasLevel: [] }); // @ts-ignore
         _test({ biasLevel: {} }); // @ts-ignore
