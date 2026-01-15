@@ -1,5 +1,11 @@
 # bias-random
 
+## 1.2.0
+
+### Minor Changes
+
+- 5972a1d: Added an export for the BiasedRandomOptions type. Improved documentation and added stricter type and value checking for inputs.
+
 ## 1.1.0
 
 ### Minor Changes
