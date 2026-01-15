@@ -63,7 +63,7 @@
     "@types/mocha": "^10.0.10",
     "@types/node": "^24.9.1",
     "@types/stringify-object": "^4.0.5",
-    "chai": "^6.2.0",
+    "chai": "^6.2.2Chai",
     "cross-env": "^10.1.0",
     "generate-arrays": "^2.0.0",
     "mocha": "^11.7.4",
