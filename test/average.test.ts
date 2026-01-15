@@ -1,12 +1,11 @@
 import { expect } from 'chai';
-import biasedRandom from "bias-random";
+import biasedRandom, { BiasedRandomOptions } from "bias-random";
 
 suite("Average value", function() {
 
     const iterations = 20_000_000; // Gets quite close to real value (~0.1% error) and runs in 2 seconds on average
-    const _test = (params: object) => {
+    const _test = (params: BiasedRandomOptions) => {
 
-        // @ts-ignore
         const { upperBias = false, biasLevel = 2, min = 0, max = 1 } = params;
 
         let testName = `Bias: ${biasLevel}`;
@@ -19,14 +18,14 @@ suite("Average value", function() {
         }
 
         test(testName, function() {
-            let sum = 0;
-            for (let i = 0; i < iterations; i++) { // @ts-ignore
+            let sum: number = 0;
+            for (let i: number = 0; i < iterations; i++) {
                 sum += biasedRandom(params);
             }
 
-            const average = sum / iterations;
-            const expected = min + (upperBias ? 1 - 1 / (biasLevel + 1) : 1 / (biasLevel + 1)) * (max - min);
-            const maxError = 0.01 * (max - min);
+            const average: number = sum / iterations;
+            const expected: number = min + (upperBias ? 1 - 1 / (biasLevel + 1) : 1 / (biasLevel + 1)) * (max - min);
+            const maxError: number = 0.01 * (max - min);
 
             console.log(`Average: ${sum / iterations}`);
             console.log(`Expected: ${expected}`);

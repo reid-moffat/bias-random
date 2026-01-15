@@ -7,7 +7,7 @@ on:
   workflow_call:
     inputs:
       use-matrix:
-        required: true
+        required: false
         type: boolean
       run-command:
         required: false
@@ -30,7 +30,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Setup node
         uses: actions/setup-node@v6

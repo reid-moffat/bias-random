@@ -1,14 +1,13 @@
 import { expect } from 'chai';
-import biasedRandom from "bias-random";
+import biasedRandom, { BiasedRandomOptions } from "bias-random";
 
 suite("Valid inputs", function() {
 
-    const _test = (params: object) => {
+    const _test = (params: BiasedRandomOptions) => {
         test("Params: " + JSON.stringify(params), function() {
-            const result = biasedRandom(params);
+            const result: number = biasedRandom(params);
 
-            // @ts-ignore
-            const { upperBias = false, biasLevel = 2, min = 0, max = 1 } = params;
+            const { min = 0, max = 1, ..._ } = params;
 
             expect(result).to.be.at.least(min);
             expect(result).to.be.at.most(max);
@@ -46,31 +45,31 @@ suite("Valid inputs", function() {
     });
 
     suite("Generated tests", function() {
-        const generateParams = () => {
-            const min = Math.random() * 2_000_000 - 1_500_000;
-            const max = Math.random() * 1_000_000;
-            const biasLevel = Math.random() * 1000 + 1;
-            const upperBias = Math.random() < 0.5;
+        const generateParams: () => BiasedRandomOptions = (): BiasedRandomOptions => {
+            const min: number = Math.random() * 2_000_000 - 1_500_000;
+            const max: number = Math.random() * 1_000_000;
+            const biasLevel: number = Math.random() * 1000 + 1;
+            const upperBias: boolean = Math.random() < 0.5;
 
-            const params = {};
+            const params: BiasedRandomOptions = {};
 
-            if (Math.random() < 0.7) { // @ts-ignore
-                params["min"] = min;
-            } // @ts-ignore
-            if (params["min"] || Math.random() < 0.7) { // @ts-ignore
-                params["max"] = (params["min"] ?? 0) + (Math.random() < 0.7 ? max : 1);
+            if (Math.random() < 0.7) {
+                params.min = min;
             }
-            if (Math.random() < 0.7) { // @ts-ignore
-                params["biasLevel"] = biasLevel;
+            if (params.min || Math.random() < 0.7) {
+                params.max = (params.min ?? 0) + (Math.random() < 0.7 ? max : 1);
             }
-            if (Math.random() < 0.7) { // @ts-ignore
-                params["upperBias"] = upperBias;
+            if (Math.random() < 0.7) {
+                params.biasLevel = biasLevel;
+            }
+            if (Math.random() < 0.7) {
+                params.upperBias = upperBias;
             }
 
             return params;
         }
 
-        for (let i = 0; i < 10_000; ++i) {
+        for (let i: number = 0; i < 10_000; ++i) {
             _test(generateParams());
         }
     });
