@@ -17,8 +17,20 @@ import BiasedRandomOptions from "./options.ts";
  */
 const biasedRandom: ((opts?: BiasedRandomOptions) => number) = ({upperBias = false, biasLevel = 2, min = 0, max = 1}: BiasedRandomOptions = {}): number => {
 
-    if (!Number.isFinite(biasLevel) || biasLevel < 1) {
-        throw new TypeError(`Parameter 'biasLevel' must be a number at least 1 (value: ${biasLevel}); use upperBias to swap bias direction`);
+    // Bias level: Finite real number at least 1
+    if (typeof biasLevel !== 'number') {
+        throw new TypeError(`Parameter 'biasLevel' must be a number, received ${biasLevel} (type: ${typeof biasLevel})`);
+    }
+    if (!Number.isFinite(biasLevel)) {
+        throw new TypeError(`Parameter biasLevel must be a finite number (value: ${biasLevel})`);
+    }
+    if (biasLevel < 1) {
+        throw new TypeError(`Parameter 'biasLevel' must be >= 1 (value: ${biasLevel}); use upperBias to swap bias direction`);
+    }
+
+    // Min and max: Finite real numbers where min is strictly less than max
+    if (typeof min !== 'number' || typeof max !== 'number') {
+        throw new TypeError(`Parameters 'min' and 'max' must be numbers. Received min: ${min} (type: ${typeof min}), max: ${max} (type: ${typeof max})`);
     }
     if (!Number.isFinite(min) || !Number.isFinite(max)) {
         throw new TypeError(`Parameters 'min' and 'max' must be finite numbers. Min value: ${min} Max value: ${max}`);
@@ -26,8 +38,10 @@ const biasedRandom: ((opts?: BiasedRandomOptions) => number) = ({upperBias = fal
     if (min >= max) {
         throw new TypeError(`Parameter 'min' must be less than 'max' (you can flip them for a valid result). Min value: ${min} Max value: ${max}`);
     }
+
+    // Upper bias: just needs to be a boolean
     if (typeof upperBias !== 'boolean') {
-        throw new TypeError(`Parameter 'upperBias' must be a boolean, value '${upperBias}' is invalid`);
+        throw new TypeError(`Parameter 'upperBias' must be a boolean, value '${upperBias}' (type: ${typeof upperBias}) is invalid`);
     }
 
     let randomValue: number = Math.pow(Math.random(), biasLevel);

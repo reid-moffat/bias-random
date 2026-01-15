@@ -7,7 +7,16 @@ suite("Invalid inputs", function() {
     suite("Invalid bias level", function() {
         const _test = (params: BiasedRandomOptions) => {
             test("Params: " + stringifyObject(params), function() {
-                const expectedErr = `Parameter 'biasLevel' must be a number at least 1 (value: ${params.biasLevel}); use upperBias to swap bias direction`;
+                let expectedErr;
+                const biasLevel = params.biasLevel;
+                if (typeof biasLevel !== 'number') {
+                    expectedErr = `Parameter 'biasLevel' must be a number, received ${biasLevel} (type: ${typeof biasLevel})`;
+                } else if (!Number.isFinite(biasLevel)) {
+                    expectedErr = `Parameter biasLevel must be a finite number (value: ${biasLevel})`;
+                } else {
+                    expectedErr = `Parameter 'biasLevel' must be >= 1 (value: ${biasLevel}); use upperBias to swap bias direction`;
+                }
+
                 expect(() => biasedRandom(params)).to.throw(TypeError, expectedErr);
             });
         }
@@ -46,9 +55,18 @@ suite("Invalid inputs", function() {
     suite("Invalid min/max type", function() {
         const _test = (params: BiasedRandomOptions) => {
             test("Params: " + stringifyObject(params), function() {
-                const min: number = params.min === undefined ? 0 : params.min;
-                const max: number = params.max === undefined ? 1 : params.max;
-                const expectedErr = `Parameters 'min' and 'max' must be finite numbers. Min value: ${min} Max value: ${max}`;
+                const min = params.min === undefined ? 0 : params.min;
+                const max = params.max === undefined ? 1 : params.max;
+
+                let expectedErr;
+                if (typeof min !== 'number' || typeof max !== 'number') {
+                    expectedErr = `Parameters 'min' and 'max' must be numbers. Received min: ${min} (type: ${typeof min}), max: ${max} (type: ${typeof max})`;
+                } else if (!Number.isFinite(min) || !Number.isFinite(max)) {
+                    expectedErr = `Parameters 'min' and 'max' must be finite numbers. Min value: ${min} Max value: ${max}`;
+                } else if (min >= max) {
+                    expectedErr = `Parameter 'min' must be less than 'max' (you can flip them for a valid result). Min value: ${min} Max value: ${max}`;
+                }
+
                 expect((): number => biasedRandom(params)).to.throw(TypeError, expectedErr);
             });
         }
@@ -111,7 +129,7 @@ suite("Invalid inputs", function() {
     suite("Invalid upperBias type", function() {
         const _test = (params: BiasedRandomOptions) => {
             test("Params: " + stringifyObject(params), function() {
-                const expectedErr = `Parameter 'upperBias' must be a boolean, value '${params.upperBias}' is invalid`;
+                const expectedErr = `Parameter 'upperBias' must be a boolean, value '${params.upperBias}' (type: ${typeof params.upperBias}) is invalid`;
                 expect(() => biasedRandom(params)).to.throw(TypeError, expectedErr);
             });
         }
