@@ -19,6 +19,9 @@ on:
         required: false
         type: boolean
 
+permissions:
+  contents: read
+
 jobs:
   matrix-job:
     runs-on: ${{ inputs.use-matrix && matrix.os || 'ubuntu-latest' }}
