@@ -1,4 +1,4 @@
-name: Lint
+name: CI
 on:
   push:
     branches:
@@ -40,3 +40,36 @@ jobs:
 
       - name: Lint
         run: pnpm run lint
+
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        node-version: [ "18.x", "20.x", "22.x", "24.x" ]
+        os: [ "ubuntu-latest", "windows-latest", "macos-latest" ]
+      fail-fast: false
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup node
+        uses: actions/setup-node@v6
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build package
+        run: pnpm run build
+
+      - name: Link package
+        run: pnpm link --global
+
+      - name: Test
+        run: pnpm run test
