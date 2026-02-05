@@ -173,7 +173,7 @@ suite('Invalid inputs', function () {
 
         test('All parameters invalid', function () {
             // @ts-ignore
-            expect(() =>
+            expect(() => // @ts-expect-error
                 biasedRandom({ biasLevel: -1, min: Infinity, max: NaN, upperBias: 'yes' })
             ).to.throw(TypeError);
         });
