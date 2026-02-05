@@ -64,13 +64,10 @@ jobs:
         run: pnpm run build
 
       - name: Pack package
-        id: pack
-        run: |
-          TARBALL=$(pnpm pack)
-          echo "tarball=$TARBALL" >> $GITHUB_OUTPUT
+        run: pnpm pack --out ${{ github.workspace }}/bias-random-packed.tgz
 
       - name: Install packed package
-        run: pnpm add -g ${{ github.workspace }}/${{ steps.pack.outputs.tarball }}
+        run: pnpm add -g ${{ github.workspace }}/bias-random-packed.tgz
 
   test:
     needs: build-install
