@@ -64,7 +64,7 @@ jobs:
         run: pnpm run build
 
       - name: Pack package
-        run: pnpm pack --out bias-random-packed.tgz --pack-destination .
+        run: pnpm pack --out bias-random-packed.tgz
 
       - name: Install packed package
         run: pnpm add -g ./bias-random-packed.tgz
