@@ -36,7 +36,7 @@ jobs:
       - name: Lint
         run: pnpm run lint
 
-  build-link:
+  build-install:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -63,11 +63,14 @@ jobs:
       - name: Build package
         run: pnpm run build
 
-      - name: Link package
-        run: pnpm link --global
+      - name: Pack package
+        run: pnpm pack
+
+      - name: Install packed package
+        run: pnpm add -g ./bias-random-*.tgz
 
   test:
-    needs: build-link
+    needs: build-install
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
