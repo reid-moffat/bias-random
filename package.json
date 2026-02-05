@@ -67,6 +67,7 @@
     "cross-env": "^10.1.0",
     "generate-arrays": "^2.0.0",
     "mocha": "^11.7.5",
+    "prettier": "3.8.1",
     "stringify-object": "^6.0.0",
     "suite-metrics": "^2.5.0",
     "test-inputs": "^1.4.0",
