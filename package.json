@@ -47,7 +47,7 @@
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "type-check": "tsc",
+    "type-check": "tsc --noEmit",
     "build": "tsup src/index.ts --format cjs,esm --dts --minify --clean",
     "test": "pnpm run build && pnpm run loadTS && mocha",
     "deployHelp": "echo 1) Run 'changeset' 2) Merge changes to main 3) Merge changeset PR 4) npm run deploy (verify it looks good)",
