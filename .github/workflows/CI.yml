@@ -97,8 +97,11 @@ jobs:
       - name: Build package
         run: pnpm run build
 
-      - name: Link package
-        run: pnpm link --global
+      - name: Pack package
+        run: pnpm pack --out ${{ github.workspace }}/bias-random-packed.tgz
+
+      - name: Install packed package
+        run: pnpm add -g ${{ github.workspace }}/bias-random-packed.tgz
 
       - name: Test
         run: pnpm run test
