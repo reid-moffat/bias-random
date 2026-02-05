@@ -29,22 +29,22 @@ suite('Invalid inputs', function () {
         _test({ biasLevel: -124 });
         _test({ biasLevel: -37.8 });
 
-        // @ts-ignore
-        _test({ biasLevel: 'true' }); // @ts-ignore
-        _test({ biasLevel: 'false' }); // @ts-ignore
-        _test({ biasLevel: '' }); // @ts-ignore
-        _test({ biasLevel: '1' }); // @ts-ignore
-        _test({ biasLevel: '2' }); // @ts-ignore
-        _test({ biasLevel: '7' }); // @ts-ignore
-        _test({ biasLevel: '3.5' }); // @ts-ignore
-        _test({ biasLevel: '-1.5' }); // @ts-ignore
-        _test({ biasLevel: '0' }); // @ts-ignore
-        _test({ biasLevel: '-0' }); // @ts-ignore
-        _test({ biasLevel: '-2' }); // @ts-ignore
-        _test({ biasLevel: null }); // @ts-ignore
-        _test({ biasLevel: [] }); // @ts-ignore
-        _test({ biasLevel: {} }); // @ts-ignore
-        _test({ biasLevel: [2] }); // @ts-ignore
+        // @ts-expect-error biasLevel non-numeric
+        _test({ biasLevel: 'true' }); // @ts-expect-error biasLevel non-numeric
+        _test({ biasLevel: 'false' }); // @ts-expect-error biasLevel non-numeric
+        _test({ biasLevel: '' }); // @ts-expect-error biasLevel non-numeric
+        _test({ biasLevel: '1' }); // @ts-expect-error biasLevel non-numeric
+        _test({ biasLevel: '2' }); // @ts-expect-error biasLevel non-numeric
+        _test({ biasLevel: '7' }); // @ts-expect-error biasLevel non-numeric
+        _test({ biasLevel: '3.5' }); // @ts-expect-error biasLevel non-numeric
+        _test({ biasLevel: '-1.5' }); // @ts-expect-error biasLevel non-numeric
+        _test({ biasLevel: '0' }); // @ts-expect-error biasLevel non-numeric
+        _test({ biasLevel: '-0' }); // @ts-expect-error biasLevel non-numeric
+        _test({ biasLevel: '-2' }); // @ts-expect-error biasLevel non-numeric
+        _test({ biasLevel: null }); // @ts-expect-error biasLevel non-numeric
+        _test({ biasLevel: [] }); // @ts-expect-error biasLevel non-numeric
+        _test({ biasLevel: {} }); // @ts-expect-error biasLevel non-numeric
+        _test({ biasLevel: [2] }); // @ts-expect-error biasLevel non-numeric
         _test({ biasLevel: { value: 2 } });
         _test({ biasLevel: NaN });
         _test({ biasLevel: Infinity });
@@ -85,17 +85,17 @@ suite('Invalid inputs', function () {
         _test({ min: NaN, max: 10 });
         _test({ min: 0, max: NaN });
 
-        // @ts-ignore
-        _test({ min: '0' }); // @ts-ignore
-        _test({ max: '1' }); // @ts-ignore
-        _test({ min: '0', max: '1' }); // @ts-ignore
-        _test({ min: null }); // @ts-ignore
-        _test({ max: null }); // @ts-ignore
-        _test({ min: [] }); // @ts-ignore
-        _test({ max: [] }); // @ts-ignore
-        _test({ min: {} }); // @ts-ignore
-        _test({ max: {} }); // @ts-ignore
-        _test({ min: [0] }); // @ts-ignore
+        // @ts-expect-error non-numeric
+        _test({ min: '0' }); // @ts-expect-error non-numeric
+        _test({ max: '1' }); // @ts-expect-error non-numeric
+        _test({ min: '0', max: '1' }); // @ts-expect-error non-numeric
+        _test({ min: null }); // @ts-expect-error non-numeric
+        _test({ max: null }); // @ts-expect-error non-numeric
+        _test({ min: [] }); // @ts-expect-error non-numeric
+        _test({ max: [] }); // @ts-expect-error non-numeric
+        _test({ min: {} }); // @ts-expect-error non-numeric
+        _test({ max: {} }); // @ts-expect-error non-numeric
+        _test({ min: [0] }); // @ts-expect-error non-numeric
         _test({ max: [1] });
     });
 
@@ -133,18 +133,18 @@ suite('Invalid inputs', function () {
             });
         };
 
-        // @ts-ignore
-        _test({ upperBias: 'true' }); // @ts-ignore
-        _test({ upperBias: 'false' }); // @ts-ignore
-        _test({ upperBias: 0 }); // @ts-ignore
-        _test({ upperBias: 1 }); // @ts-ignore
-        _test({ upperBias: 1.7 }); // @ts-ignore
-        _test({ upperBias: -34 }); // @ts-ignore
-        _test({ upperBias: -325.6 }); // @ts-ignore
-        _test({ upperBias: null }); // @ts-ignore
-        _test({ upperBias: NaN }); // @ts-ignore
-        _test({ upperBias: [] }); // @ts-ignore
-        _test({ upperBias: {} }); // @ts-ignore
+        // @ts-expect-error upperBias non-boolean
+        _test({ upperBias: 'true' }); // @ts-expect-error upperBias non-boolean
+        _test({ upperBias: 'false' }); // @ts-expect-error upperBias non-boolean
+        _test({ upperBias: 0 }); // @ts-expect-error upperBias non-boolean
+        _test({ upperBias: 1 }); // @ts-expect-error upperBias non-boolean
+        _test({ upperBias: 1.7 }); // @ts-expect-error upperBias non-boolean
+        _test({ upperBias: -34 }); // @ts-expect-error upperBias non-boolean
+        _test({ upperBias: -325.6 }); // @ts-expect-error upperBias non-boolean
+        _test({ upperBias: null }); // @ts-expect-error upperBias non-boolean
+        _test({ upperBias: NaN }); // @ts-expect-error upperBias non-boolean
+        _test({ upperBias: [] }); // @ts-expect-error upperBias non-boolean
+        _test({ upperBias: {} }); // @ts-expect-error upperBias non-boolean
         _test({ upperBias: [true] });
     });
 
@@ -162,19 +162,18 @@ suite('Invalid inputs', function () {
         });
 
         test('Invalid upperBias and invalid biasLevel', function () {
-            // @ts-ignore
+            // @ts-expect-error upperBias string
             expect(() => biasedRandom({ upperBias: 'true', biasLevel: -1 })).to.throw(TypeError);
         });
 
         test('Invalid min type and invalid max type', function () {
-            // @ts-ignore
+            // @ts-expect-error min/max strings
             expect(() => biasedRandom({ min: '0', max: '10' })).to.throw(TypeError);
         });
 
         test('All parameters invalid', function () {
-            // @ts-ignore
             expect(() =>
-                // @ts-expect-error
+                // @ts-expect-error upperBias string
                 biasedRandom({ biasLevel: -1, min: Infinity, max: NaN, upperBias: 'yes' })
             ).to.throw(TypeError);
         });

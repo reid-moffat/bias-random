@@ -6,7 +6,7 @@ suite('Valid inputs', function () {
         test('Params: ' + JSON.stringify(params), function () {
             const result: number = biasedRandom(params);
 
-            const { min = 0, max = 1, ..._ } = params;
+            const { min = 0, max = 1 } = params;
 
             expect(result).to.be.at.least(min);
             expect(result).to.be.at.most(max);
