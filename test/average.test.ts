@@ -1,30 +1,29 @@
 import { expect } from 'chai';
-import biasedRandom, { BiasedRandomOptions } from "bias-random";
+import biasedRandom, { BiasedRandomOptions } from 'bias-random';
 
-suite("Average value", function() {
-
+suite('Average value', function () {
     const iterations = 20_000_000; // Gets quite close to real value (~0.1% error) and runs in 2 seconds on average
     const _test = (params: BiasedRandomOptions) => {
-
         const { upperBias = false, biasLevel = 2, min = 0, max = 1 } = params;
 
         let testName = `Bias: ${biasLevel}`;
         if (upperBias || min !== 0 || max !== 1) {
             testName += ` (`;
-            testName += upperBias ? "Upper biased" : "";
+            testName += upperBias ? 'Upper biased' : '';
             testName += (upperBias ? ', ' : '') + `Min: ${min}`;
-            testName += (testName.length > 1 ? " " : "") + `Max: ${max}`;
+            testName += (testName.length > 1 ? ' ' : '') + `Max: ${max}`;
             testName += ')';
         }
 
-        test(testName, function() {
+        test(testName, function () {
             let sum: number = 0;
             for (let i: number = 0; i < iterations; i++) {
                 sum += biasedRandom(params);
             }
 
             const average: number = sum / iterations;
-            const expected: number = min + (upperBias ? 1 - 1 / (biasLevel + 1) : 1 / (biasLevel + 1)) * (max - min);
+            const expected: number =
+                min + (upperBias ? 1 - 1 / (biasLevel + 1) : 1 / (biasLevel + 1)) * (max - min);
             const maxError: number = 0.01 * (max - min);
 
             console.log(`Average: ${sum / iterations}`);
@@ -34,7 +33,7 @@ suite("Average value", function() {
 
             expect(average).to.be.closeTo(expected, maxError);
         });
-    }
+    };
 
     // Test cases with various combinations of parameters
 
@@ -67,5 +66,4 @@ suite("Average value", function() {
     _test({ min: 10, max: 20, biasLevel: 4 });
 
     _test({ upperBias: true, min: -100, max: 100 });
-
 });

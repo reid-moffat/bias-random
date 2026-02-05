@@ -12,6 +12,6 @@ type BiasedRandomOptions = {
     min?: number;
     /** Maximum value (default 1) */
     max?: number;
-}
+};
 
 export default BiasedRandomOptions;

@@ -1,7 +1,11 @@
+# PNPM packages
 node_modules/
 
 # Generated minified package files
 dist/
+
+# Packed package
+bias-random-*.tgz
 
 
 #

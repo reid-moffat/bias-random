@@ -1,20 +1,19 @@
 import { expect } from 'chai';
-import biasedRandom, { BiasedRandomOptions } from "bias-random";
+import biasedRandom, { BiasedRandomOptions } from 'bias-random';
 
-suite("Valid inputs", function() {
-
+suite('Valid inputs', function () {
     const _test = (params: BiasedRandomOptions) => {
-        test("Params: " + JSON.stringify(params), function() {
+        test('Params: ' + JSON.stringify(params), function () {
             const result: number = biasedRandom(params);
 
-            const { min = 0, max = 1, ..._ } = params;
+            const { min = 0, max = 1 } = params;
 
             expect(result).to.be.at.least(min);
             expect(result).to.be.at.most(max);
         });
-    }
+    };
 
-    suite("Manual TCs", function() {
+    suite('Manual TCs', function () {
         _test({});
         _test({ biasLevel: 2, upperBias: false });
         _test({ biasLevel: 2, upperBias: true });
@@ -44,7 +43,7 @@ suite("Valid inputs", function() {
         _test({ min: -100, max: -10, biasLevel: 4, upperBias: true });
     });
 
-    suite("Generated tests", function() {
+    suite('Generated tests', function () {
         const generateParams: () => BiasedRandomOptions = (): BiasedRandomOptions => {
             const min: number = Math.random() * 2_000_000 - 1_500_000;
             const max: number = Math.random() * 1_000_000;
@@ -67,7 +66,7 @@ suite("Valid inputs", function() {
             }
 
             return params;
-        }
+        };
 
         for (let i: number = 0; i < 10_000; ++i) {
             _test(generateParams());
